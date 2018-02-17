@@ -1,35 +1,27 @@
-#include <iostream>
 #include "include/calc.h"
-using namespace std;
 
 int main() {
   double a, b, ans;
   char chosenOp;
 
   for ( ; ; ) {
-    cout << "Enter two numbers: " << endl;
-    cin >> a >> b;
-    cout << "Enter an operator (+ - / *): " << endl;
-    cin >> chosenOp;
+    std::cout << "Enter an equation: ";
+    std::cin >> a >> chosenOp >> b;
+    if (isdigit(a) && isdigit(b))
+    {
+      std::cout << a << " " << chosenOp << " " << b << " = ";
 
-    if (chosenOp == '+') 
-    {
-      ans = add(a, b);
+      ans = calculateAns(chosenOp, a, b);
+      
+      std::cout << ans << std::endl;
+      std::cout << checkForGachi(ans) << std::endl;
     }
-    else if (chosenOp == '-')
+    else
     {
-      ans = sub(a, b);
-    }
-    else if (chosenOp == '/')
-    {
-      ans = divide(a, b);
-    }
-    else if (chosenOp == '*')
-    {
-      ans = multi(a, b);
+      std::cerr << "Please enter numeric values." << std::endl;
+      break;
     }
     
-    cout << "Answer: " << ans << endl;
   }
 
   return 0;
